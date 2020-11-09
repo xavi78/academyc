@@ -35,10 +35,9 @@ public class TeacheDaoTest {
         Teacher teacher = new Teacher(
                 uuid,
                 "Pepe",
-                "Pepe", new Date()
-        );
+                "Pepe");
         teacherDao.save(teacher);
-        assertThat(teacher.uuid().toString()).isEqualTo(uuid.toString());
+        assertThat(teacher.getUuid().toString()).isEqualTo(uuid.toString());
 
 
 

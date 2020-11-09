@@ -16,12 +16,14 @@ public class Teacher implements Serializable {
 
     @Id
     @Column(name = "uuid", length = 16, unique = true, nullable = false)
-    private UUID uuid = UUID.randomUUID();
+    private String uuid = UUID.randomUUID().toString();
 
     @NotEmpty
+    @Column (name="name")
     private String name;
 
     @NotEmpty
+    @Column (name="lastname")
     private String lastname;
 
 
@@ -30,6 +32,7 @@ public class Teacher implements Serializable {
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date createdAt;
+
 
 
     @Column (name="updated_at")
@@ -42,25 +45,33 @@ public class Teacher implements Serializable {
         super();
     }
 
-    public Teacher(UUID uuid, @NotEmpty  String name, @NotEmpty  String LastName, @NotNull Date createdAt)
+    public Teacher(UUID uuid, @NotEmpty  String name, @NotEmpty  String lastname)
     {
         super();
-        this.uuid = uuid;
+        this.uuid = uuid.toString();
         this.name = name;
-        this.lastname=name;
-        this.createdAt = createdAt;
+        this.lastname=lastname;
+        this.createdAt = new Date();
     }
 
-    public UUID uuid(){
+    public String getUuid() {
         return uuid;
     }
 
-    public String Name(){
+    public String getName() {
         return name;
     }
 
-    public Date CreatedAt(){
+    public String getLastname() {
+        return lastname;
+    }
+
+    public Date getCreatedAt() {
         return createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 
 
