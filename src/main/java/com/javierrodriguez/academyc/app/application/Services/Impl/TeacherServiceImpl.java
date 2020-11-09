@@ -2,7 +2,7 @@ package com.javierrodriguez.academyc.app.application.Services.Impl;
 
 import com.javierrodriguez.academyc.app.application.Services.ITeacherService;
 import com.javierrodriguez.academyc.teachers.domain.entities.Teacher;
-import com.javierrodriguez.academyc.teachers.infraestructure.persistence.dao.ITeacherDao;
+import com.javierrodriguez.academyc.teachers.infraestructure.persistence.Repository.ITeacherDao;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
