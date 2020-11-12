@@ -1,4 +1,4 @@
-package com.javierrodriguez.academyc.teachers.application.services;
+package com.javierrodriguez.academyc.app.application.services;
 
 import com.javierrodriguez.academyc.app.application.services.IDniService;
 import org.junit.jupiter.api.Test;

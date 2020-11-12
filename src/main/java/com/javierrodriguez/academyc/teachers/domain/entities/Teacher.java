@@ -49,13 +49,15 @@ public class Teacher implements Serializable {
         super();
     }
 
-    public Teacher(UUID uuid, @NotEmpty  String name, @NotEmpty  String lastname)
+    public Teacher(UUID uuid, @NotEmpty  String name, @NotEmpty  String lastname, String dni)
     {
         super();
         this.uuid = uuid.toString();
         this.name = name;
         this.lastname=lastname;
+        this.dni = dni;
         this.createdAt = new Date();
+
     }
 
     public String getUuid() {

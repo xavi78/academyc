@@ -10,6 +10,7 @@ import com.javierrodriguez.academyc.teachers.infraestructure.persistence.Reposit
 import org.springframework.core.annotation.Order;
 
 import java.util.Date;
+import java.util.Optional;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -30,14 +31,15 @@ public class TeacheDaoTest {
 
     @Test
     @Order(2)
-    public void addTeacher(){
+    public void addTeacher() throws Exception {
 
         UUID uuid = UUID.randomUUID();
         Teacher teacher = new Teacher(
                 uuid,
                 "Pepe",
-                "Pepe");
-         Teacher result = teacherService.saveTeacher(teacher);
+                "Pepe",
+                "44865710R");
+        Teacher result = teacherService.saveTeacher(teacher);
         assertThat(teacher.getUuid().toString()).isEqualTo(result.getUuid());
 
 

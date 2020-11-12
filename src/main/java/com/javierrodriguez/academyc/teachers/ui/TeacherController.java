@@ -24,8 +24,6 @@ public class TeacherController {
     @Autowired
     private ITeacherService teacherService;
 
-    @Autowired
-    private IDniService dniService;
 
 
     @RequestMapping(value="", method= RequestMethod.GET, produces="application/json")
@@ -40,14 +38,13 @@ public class TeacherController {
 
 
         try {
-            if (dniService.checkDni(teacher.getDni())) {
+
                 Teacher result = teacherService.saveTeacher(teacher);
                 return new ResponseEntity(result, HttpStatus.OK);
-            }
-            return new ResponseEntity("Error el dni es incorrecto", HttpStatus.NOT_ACCEPTABLE);
+
         }catch (Exception ex){
             logger.error("Error en la creación de profesor"+ ex.getMessage());
-            return new ResponseEntity("Error en el proceso de creación de profesor", HttpStatus.BAD_GATEWAY);
+            return new ResponseEntity(ex.getMessage(), HttpStatus.BAD_GATEWAY);
         }
 
     }
