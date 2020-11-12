@@ -1,6 +1,7 @@
-package com.javierrodriguez.academyc.teachers.infraestructure.persistence.dao;
+package com.javierrodriguez.academyc.teachers.domain.repositories;
 
 
+import com.javierrodriguez.academyc.teachers.application.services.ITeacherService;
 import com.javierrodriguez.academyc.teachers.domain.entities.Teacher;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +19,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class TeacheDaoTest {
 
     @Autowired
-    private ITeacherDao teacherDao;
+    private ITeacherService teacherService;
 
     @Test
     @Order(1)
     public void injectedComponentsAreNotNull()
     {
-        assertThat(teacherDao).isNotNull();
+        assertThat(teacherService).isNotNull();
     }
 
     @Test
@@ -36,8 +37,8 @@ public class TeacheDaoTest {
                 uuid,
                 "Pepe",
                 "Pepe");
-        teacherDao.save(teacher);
-        assertThat(teacher.getUuid().toString()).isEqualTo(uuid.toString());
+         Teacher result = teacherService.saveTeacher(teacher);
+        assertThat(teacher.getUuid().toString()).isEqualTo(result.getUuid());
 
 
 

@@ -1,7 +1,7 @@
 package com.javierrodriguez.academyc.teachers.ui;
 
 
-import com.javierrodriguez.academyc.app.application.Services.ITeacherService;
+import com.javierrodriguez.academyc.teachers.application.services.ITeacherService;
 import com.javierrodriguez.academyc.teachers.domain.entities.Teacher;
 import com.javierrodriguez.academyc.teachers.infraestructure.persistence.Repository.ITeacherDao;
 import org.apache.commons.logging.LogFactory;
@@ -21,7 +21,7 @@ public class TeacherController {
     private static final org.apache.commons.logging.Log logger = LogFactory.getLog("TeacherController.class");
 
     @Autowired
-    private ITeacherDao teacherDao;
+    private ITeacherService teacherService;
 
     @RequestMapping(value="", method= RequestMethod.GET, produces="application/json")
     public ResponseEntity<Void> home()
@@ -33,8 +33,8 @@ public class TeacherController {
     public ResponseEntity<Teacher> saveTeacher(@RequestBody Teacher teacher, UriComponentsBuilder builder)
     {
         logger.debug("teacher ->"+ teacher);
-        teacherDao.save(teacher);
-        return new ResponseEntity(teacher, HttpStatus.OK);
+        Teacher result = teacherService.saveTeacher(teacher);
+        return new ResponseEntity(result, HttpStatus.OK);
     }
 
 }

@@ -31,7 +31,7 @@ public class Teacher implements Serializable {
     @Column (name="created_at")
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Date createdAt;
+    private Date createdAt = new Date();
 
 
 

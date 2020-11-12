@@ -1,8 +1,8 @@
-package com.javierrodriguez.academyc.app.application.Services;
+package com.javierrodriguez.academyc.teachers.application.services;
 
 import com.javierrodriguez.academyc.teachers.domain.entities.Teacher;
 
 public interface ITeacherService {
 
-    void saveTeacher(Teacher teacher);
+    Teacher saveTeacher(Teacher teacher);
 }
