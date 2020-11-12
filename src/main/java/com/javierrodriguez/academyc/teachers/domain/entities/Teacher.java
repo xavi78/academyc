@@ -27,6 +27,10 @@ public class Teacher implements Serializable {
     private String lastname;
 
 
+    @Column (name="dni")
+    private String dni;
+
+
     @NotNull
     @Column (name="created_at")
     @Temporal(TemporalType.DATE)
@@ -65,6 +69,8 @@ public class Teacher implements Serializable {
     public String getLastname() {
         return lastname;
     }
+
+    public String getDni() { return dni; }
 
     public Date getCreatedAt() {
         return createdAt;

@@ -1,6 +1,7 @@
 package com.javierrodriguez.academyc.teachers.ui;
 
 
+import com.javierrodriguez.academyc.app.application.services.IDniService;
 import com.javierrodriguez.academyc.teachers.application.services.ITeacherService;
 import com.javierrodriguez.academyc.teachers.domain.entities.Teacher;
 import com.javierrodriguez.academyc.teachers.infraestructure.persistence.Repository.ITeacherDao;
@@ -23,6 +24,10 @@ public class TeacherController {
     @Autowired
     private ITeacherService teacherService;
 
+    @Autowired
+    private IDniService dniService;
+
+
     @RequestMapping(value="", method= RequestMethod.GET, produces="application/json")
     public ResponseEntity<Void> home()
     {
@@ -32,9 +37,19 @@ public class TeacherController {
     @RequestMapping(value="", method= RequestMethod.POST, produces ="application/json")
     public ResponseEntity<Teacher> saveTeacher(@RequestBody Teacher teacher, UriComponentsBuilder builder)
     {
-        logger.debug("teacher ->"+ teacher);
-        Teacher result = teacherService.saveTeacher(teacher);
-        return new ResponseEntity(result, HttpStatus.OK);
+
+
+        try {
+            if (dniService.checkDni(teacher.getDni())) {
+                Teacher result = teacherService.saveTeacher(teacher);
+                return new ResponseEntity(result, HttpStatus.OK);
+            }
+            return new ResponseEntity("Error el dni es incorrecto", HttpStatus.NOT_ACCEPTABLE);
+        }catch (Exception ex){
+            logger.error("Error en la creación de profesor"+ ex.getMessage());
+            return new ResponseEntity("Error en el proceso de creación de profesor", HttpStatus.BAD_GATEWAY);
+        }
+
     }
 
 }
